@@ -1,2 +1,5 @@
 # Odoo configuration
 config/odoo.conf
+
+# Secrets
+.env
