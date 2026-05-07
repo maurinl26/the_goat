@@ -28,6 +28,16 @@ services:
       - ./config/odoo.conf:/etc/odoo/odoo.conf
     restart: unless-stopped
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: the_goat_cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - odoo
+
 volumes:
   db_data:
   odoo_data:
