@@ -1,0 +1,29 @@
+// Design tokens — La Chèvrerie du Rocher
+// Inspiration : minéral, végétal, artisanat des Pyrénées
+
+:root {
+    // Surfaces
+    --chev-bg:        #FAF8F3;  // lin / papier non blanchi
+    --chev-bg-soft:   #F1EDE4;  // surface secondaire (cards)
+    --chev-line:      #E2DDD1;  // séparateurs discrets
+
+    // Texte
+    --chev-text:      #3D3A33;  // gris-brun chaud (jamais de noir pur)
+    --chev-muted:     #7A7367;  // textes secondaires
+
+    // Accents
+    --chev-forest:    #2F4A37;  // vert sapin / mousse (accent principal)
+    --chev-forest-d:  #243A2C;  // hover
+    --chev-terre:     #A0522D;  // terre / croûte de fromage affiné (CTA)
+    --chev-terre-d:   #8A4626;  // hover CTA
+    --chev-or:        #C9A24B;  // doré subtil (liserés, ornements)
+
+    // Typo
+    --chev-font-serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --chev-font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+
+    // Radii et ombres
+    --chev-radius:     14px;
+    --chev-radius-lg:  20px;
+    --chev-shadow:     0 4px 20px -8px rgba(61, 58, 51, 0.15);
+}

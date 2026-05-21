@@ -1,0 +1,72 @@
+// Snippet "Marchés" — La Chèvrerie du Rocher
+
+.s_markets {
+    background-color: var(--chev-bg);
+    padding: 5rem 0;
+
+    .s_markets_intro {
+        max-width: 640px;
+        margin: 0 auto 3rem;
+        text-align: center;
+
+        .s_markets_eyebrow {
+            font-family: var(--chev-font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--chev-terre);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--chev-muted);
+            font-size: 1.1rem;
+        }
+    }
+
+    .s_markets_card {
+        background-color: var(--chev-bg-soft);
+        border-radius: var(--chev-radius-lg);
+        padding: 2rem;
+        height: 100%;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-left: 3px solid var(--chev-forest);
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--chev-shadow);
+        }
+
+        h4 {
+            font-family: var(--chev-font-serif);
+            font-size: 1.5rem;
+            color: var(--chev-forest);
+            margin-bottom: 1rem;
+        }
+
+        .s_markets_when {
+            font-family: var(--chev-font-sans);
+            font-weight: 600;
+            color: var(--chev-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .s_markets_hours {
+            color: var(--chev-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .s_markets_address {
+            color: var(--chev-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+    }
+}

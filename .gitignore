@@ -3,3 +3,11 @@ config/odoo.conf
 
 # Secrets
 .env
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS / misc
+.DS_Store
+*.png

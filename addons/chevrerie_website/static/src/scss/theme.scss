@@ -1,0 +1,114 @@
+// Thème global — La Chèvrerie du Rocher
+
+body {
+    font-family: var(--chev-font-sans);
+    color: var(--chev-text);
+    background-color: var(--chev-bg);
+    font-feature-settings: "ss01", "cv02";
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--chev-font-serif);
+    font-weight: 500;
+    color: var(--chev-text);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+}
+
+h1, .h1 { font-weight: 600; font-size: clamp(2.25rem, 4vw, 3.5rem); }
+h2, .h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+h3, .h3 { font-size: clamp(1.375rem, 2vw, 1.75rem); }
+
+p {
+    line-height: 1.7;
+    color: var(--chev-text);
+}
+
+.text-muted {
+    color: var(--chev-muted) !important;
+}
+
+a {
+    color: var(--chev-forest);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--chev-forest-d);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+}
+
+// Boutons — terre cuite pour les actions principales
+.btn-primary {
+    background-color: var(--chev-terre);
+    border-color: var(--chev-terre);
+    color: #fff;
+    border-radius: var(--chev-radius);
+    padding: 0.7rem 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: all 0.2s ease;
+
+    &:hover, &:focus, &:active {
+        background-color: var(--chev-terre-d) !important;
+        border-color: var(--chev-terre-d) !important;
+        transform: translateY(-1px);
+        box-shadow: var(--chev-shadow);
+    }
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1.5px solid var(--chev-forest);
+    color: var(--chev-forest);
+    border-radius: var(--chev-radius);
+    padding: 0.65rem 1.55rem;
+
+    &:hover {
+        background-color: var(--chev-forest);
+        border-color: var(--chev-forest);
+        color: #fff;
+    }
+}
+
+// Header
+#wrapwrap > header {
+    background-color: var(--chev-bg);
+    border-bottom: 1px solid var(--chev-line);
+
+    .navbar-brand,
+    .nav-link {
+        font-family: var(--chev-font-serif);
+        color: var(--chev-text) !important;
+    }
+}
+
+// Cartes / surfaces secondaires
+.card {
+    background-color: var(--chev-bg-soft);
+    border: none;
+    border-radius: var(--chev-radius-lg);
+    box-shadow: var(--chev-shadow);
+}
+
+// Séparateur ornemental discret
+.chev-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 200px;
+
+    &::before, &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--chev-line);
+    }
+
+    &::after { background: var(--chev-or); opacity: 0.4; }
+}

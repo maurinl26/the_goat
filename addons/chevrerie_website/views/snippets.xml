@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Snippet "Hero éditorial" — composition magazine, photo plein cadre
+        + cartouche typographique qui chevauche l'image.
+        Glissable depuis l'éditeur (catégorie "Structure").
+    -->
+    <template id="s_hero_editorial" name="Hero éditorial">
+        <section class="s_hero_editorial">
+            <div class="s_hero_editorial_media"
+                 style="background-image: url('/web/image/website.library_image_08');"/>
+            <div class="s_hero_editorial_inner">
+                <div class="container">
+                    <div class="s_hero_editorial_card">
+                        <span class="s_hero_editorial_eyebrow">Couserans · Ariège</span>
+                        <h1 class="s_hero_editorial_title">
+                            La Chèvrerie
+                            <em>du Rocher</em>
+                        </h1>
+                        <p class="s_hero_editorial_lead">
+                            Fromages fermiers d'estive au cœur des Pyrénées,
+                            façonnés au rythme de la montagne.
+                        </p>
+                        <div class="s_hero_editorial_actions">
+                            <a href="/shop" class="btn btn-primary">Découvrir nos fromages</a>
+                            <a href="#notre-histoire" class="btn btn-secondary">Notre histoire</a>
+                        </div>
+                        <p class="s_hero_editorial_signature">
+                            Marie &amp; Véronique, éleveuses
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!--
+        Snippet "Marchés" — bloc réutilisable affichant les marchés
+        où l'on peut retrouver la Chèvrerie du Rocher.
+        Glissable depuis l'éditeur du site (catégorie "Content").
+    -->
+    <template id="s_markets" name="Marchés">
+        <section class="s_markets">
+            <div class="container">
+                <div class="s_markets_intro">
+                    <span class="s_markets_eyebrow">Au plus près de vous</span>
+                    <h2>Retrouvez-nous sur les marchés</h2>
+                    <p>
+                        Chaque semaine, nous descendons de la montagne pour vous proposer
+                        nos fromages fermiers et nos produits laitiers en direct.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="s_markets_card">
+                            <h4>Saint-Girons</h4>
+                            <p class="s_markets_when">Samedi matin</p>
+                            <p class="s_markets_hours">8h00 — 13h00</p>
+                            <p class="s_markets_address">Place des Poilus, 09200 Saint-Girons</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="s_markets_card">
+                            <h4>À compléter</h4>
+                            <p class="s_markets_when">Jour</p>
+                            <p class="s_markets_hours">Horaires</p>
+                            <p class="s_markets_address">Adresse</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!--
+        Enregistrement des snippets dans le panneau de l'éditeur.
+        Hero éditorial → catégorie "Structure"
+        Marchés        → catégorie "Content"
+    -->
+    <template id="s_chevrerie_snippets" inherit_id="website.snippets" name="Chèvrerie Snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="inside">
+            <t t-snippet="chevrerie_website.s_hero_editorial"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.svg"/>
+        </xpath>
+        <xpath expr="//div[@id='snippet_content']" position="inside">
+            <t t-snippet="chevrerie_website.s_markets"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_text_block.svg"/>
+        </xpath>
+    </template>
+
+</odoo>

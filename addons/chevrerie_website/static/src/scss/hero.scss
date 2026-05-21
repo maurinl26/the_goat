@@ -1,0 +1,152 @@
+// Snippet "Hero éditorial" — La Chèvrerie du Rocher
+// Composition magazine : photo pleine largeur + cartouche typographique
+
+.s_hero_editorial {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background-color: var(--chev-bg);
+    padding: 0;
+
+    // Couche image (75% supérieur)
+    .s_hero_editorial_media {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 20%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        // Voile dégradé pour ancrer le bas
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(61, 58, 51, 0.15) 0%,
+                rgba(61, 58, 51, 0) 35%,
+                rgba(61, 58, 51, 0.45) 100%
+            );
+        }
+    }
+
+    // Conteneur du cartouche
+    .s_hero_editorial_inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 0 1.5rem 4rem;
+    }
+
+    // Cartouche éditorial — "carte de visite" qui chevauche l'image
+    .s_hero_editorial_card {
+        max-width: 640px;
+        background-color: var(--chev-bg);
+        padding: 3.5rem 3rem 3rem;
+        border-radius: 0;
+        box-shadow: 0 20px 60px -20px rgba(36, 58, 44, 0.35);
+        position: relative;
+
+        // Liseré or discret en haut
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            width: 60px;
+            height: 3px;
+            background: var(--chev-or);
+        }
+    }
+
+    // Lieu — petites capitales très espacées, avec barre horizontale
+    .s_hero_editorial_eyebrow {
+        font-family: var(--chev-font-sans);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--chev-terre);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 36px;
+            height: 1px;
+            background: var(--chev-terre);
+        }
+    }
+
+    // Titre — Fraunces, italique sur la 2e ligne (signature éditoriale)
+    .s_hero_editorial_title {
+        font-family: var(--chev-font-serif);
+        font-size: clamp(2.75rem, 6vw, 5rem);
+        line-height: 0.95;
+        font-weight: 400;
+        margin: 0 0 1.5rem;
+        color: var(--chev-text);
+        letter-spacing: -0.02em;
+
+        em {
+            font-style: italic;
+            font-weight: 500;
+            color: var(--chev-forest);
+            display: block;
+        }
+    }
+
+    // Chapô — serif italique, comme un sous-titre de magazine
+    .s_hero_editorial_lead {
+        font-family: var(--chev-font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--chev-muted);
+        margin: 0 0 2rem;
+        max-width: 460px;
+    }
+
+    .s_hero_editorial_actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    // Signature manuscrite (optionnelle, en bas du cartouche)
+    .s_hero_editorial_signature {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--chev-line);
+        font-family: var(--chev-font-serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        color: var(--chev-muted);
+    }
+
+    // Responsive — sur mobile, cartouche centré, plus compact
+    @media (max-width: 768px) {
+        min-height: 95vh;
+
+        .s_hero_editorial_media {
+            bottom: 30%;
+        }
+
+        .s_hero_editorial_card {
+            padding: 2.5rem 1.75rem;
+            margin: 0 auto;
+        }
+
+        .s_hero_editorial_inner {
+            padding-bottom: 2rem;
+        }
+    }
+}
