@@ -9,25 +9,25 @@
     <template id="s_hero_editorial" name="Hero éditorial">
         <section class="s_hero_editorial">
             <div class="s_hero_editorial_media"
-                 style="background-image: url('/web/image/website.library_image_08');"/>
+                 style="background-image: url('/chevrerie_website/static/src/img/hero/couserans.jpg');"/>
             <div class="s_hero_editorial_inner">
                 <div class="container">
                     <div class="s_hero_editorial_card">
                         <span class="s_hero_editorial_eyebrow">Couserans · Ariège</span>
                         <h1 class="s_hero_editorial_title">
-                            Mohair
+                            Laines fines
                             <em>des Pyrénées</em>
                         </h1>
                         <p class="s_hero_editorial_lead">
-                            Laine soyeuse de nos chèvres angora,
-                            élevées en plein air au cœur des montagnes.
+                            Mohair de nos chèvres angora et fibre de nos alpagas,
+                            élevés en plein air au cœur des montagnes.
                         </p>
                         <div class="s_hero_editorial_actions">
                             <a href="/shop" class="btn btn-primary">Découvrir la boutique</a>
                             <a href="#notre-histoire" class="btn btn-secondary">Notre histoire</a>
                         </div>
                         <p class="s_hero_editorial_signature">
-                            {{Prénom à compléter}}, éleveuse
+                            Marie &amp; Véronique, éleveuses
                         </p>
                     </div>
                 </div>
@@ -49,9 +49,9 @@
                             <em>en toute transparence</em>
                         </h2>
                         <p>
-                            Au pied du Mont Valier, un petit troupeau de chèvres angora
-                            vit au rythme des saisons. Chaque tonte donne une fibre rare,
-                            d'une douceur incomparable&#8239;: le mohair.
+                            Au pied du Mont Valier, alpagas et chèvres angora vivent
+                            au rythme des saisons. Chaque tonte donne une fibre rare,
+                            d'une douceur incomparable.
                         </p>
                         <p>
                             Travaillée en circuit court avec la coopérative
@@ -62,11 +62,11 @@
                         <a href="/savoir-faire" class="btn btn-secondary">En savoir plus</a>
                     </div>
                     <div class="col-lg-6 s_intro_story_media">
-                        <img src="/web/image/website.library_image_13"
+                        <img src="/chevrerie_website/static/src/img/story/marie_vero_alpagas.jpg"
                              class="img-fluid"
-                             alt="Chèvres angora dans les Pyrénées"/>
+                             alt="Marie et Véronique avec leurs alpagas"/>
                         <div class="s_intro_story_caption">
-                            <span>Estives du Couserans</span>
+                            <span>Marie &amp; Véronique, sur les estives du Couserans</span>
                         </div>
                     </div>
                 </div>
@@ -95,10 +95,10 @@
                         <article class="s_wool_card">
                             <a href="/shop" class="s_wool_card_link">
                                 <div class="s_wool_card_media"
-                                     style="background-image: url('/web/image/website.library_image_03');"/>
+                                     style="background-image: url('/chevrerie_website/static/src/img/story/alpagas.jpg');"/>
                                 <div class="s_wool_card_body">
                                     <span class="s_wool_card_kicker">Matière</span>
-                                    <h3>Pelote de mohair</h3>
+                                    <h3>Pelote de laine</h3>
                                     <p>Filée à Castres, écheveau de 50&#8239;g, plusieurs coloris naturels.</p>
                                     <span class="s_wool_card_cta">Voir la pelote →</span>
                                 </div>
@@ -109,11 +109,11 @@
                         <article class="s_wool_card">
                             <a href="/shop" class="s_wool_card_link">
                                 <div class="s_wool_card_media"
-                                     style="background-image: url('/web/image/website.library_image_05');"/>
+                                     style="background-image: url('/chevrerie_website/static/src/img/story/marie_alpaga.jpg');"/>
                                 <div class="s_wool_card_body">
                                     <span class="s_wool_card_kicker">À porter</span>
                                     <h3>Écharpe d'hiver</h3>
-                                    <p>Tricotée main, mohair &amp; soie, finition franges roulées.</p>
+                                    <p>Tricotée main, mohair &amp; alpaga, finition franges roulées.</p>
                                     <span class="s_wool_card_cta">Voir l'écharpe →</span>
                                 </div>
                             </a>
@@ -123,11 +123,11 @@
                         <article class="s_wool_card">
                             <a href="/shop" class="s_wool_card_link">
                                 <div class="s_wool_card_media"
-                                     style="background-image: url('/web/image/website.library_image_10');"/>
+                                     style="background-image: url('/chevrerie_website/static/src/img/story/alpaga_noir.jpg');"/>
                                 <div class="s_wool_card_body">
                                     <span class="s_wool_card_kicker">Pièce d'exception</span>
                                     <h3>Gilet long</h3>
-                                    <p>Édition limitée, modèle &amp; tricotage maison, mohair pur.</p>
+                                    <p>Édition limitée, modèle &amp; tricotage maison.</p>
                                     <span class="s_wool_card_cta">Voir le gilet →</span>
                                 </div>
                             </a>
@@ -160,8 +160,8 @@
                             <span class="s_savoirfaire_num">01</span>
                             <h3>La tonte</h3>
                             <p>
-                                Deux fois par an, au printemps et à l'automne, les chèvres
-                                sont tondues à la main. La fibre est triée mèche par mèche.
+                                Une à deux fois par an, alpagas et chèvres sont tondus
+                                à la main. La fibre est triée mèche par mèche.
                             </p>
                         </div>
                     </div>
@@ -238,8 +238,9 @@
                     <span class="s_visit_eyebrow">Venir nous voir</span>
                     <h2>Visiter l'atelier</h2>
                     <p>
-                        L'atelier ouvre ses portes sur rendez-vous. Découvrez les chèvres,
-                        la fibre brute et les pièces en cours de tricotage.
+                        L'atelier ouvre ses portes sur rendez-vous. Rencontrez les
+                        alpagas et les chèvres, découvrez la fibre brute et les
+                        pièces en cours de tricotage.
                     </p>
                     <a href="/contactus" class="btn btn-primary">Prendre rendez-vous</a>
                 </div>
