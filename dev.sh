@@ -44,12 +44,18 @@ case "$cmd" in
     ;;
 
   uninstall)
-    # Désinstalle un module proprement via odoo-bin
+    # Désinstalle un module proprement via l'API Odoo
     mod="${1:?usage: ./dev.sh uninstall <module>}"
-    docker compose exec -T odoo odoo --no-http --stop-after-init \
-      -d "$DB" --uninstall "$mod"
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<PYEOF
+m = env['ir.module.module'].search([('name', '=', '${mod}'), ('state', '=', 'installed')])
+if m:
+    m.button_immediate_uninstall()
+    env.cr.commit()
+    print("→ ${mod} désinstallé.")
+else:
+    print("→ ${mod} non installé, rien à faire.")
+PYEOF
     docker compose restart odoo
-    echo "→ ${mod} désinstallé."
     ;;
 
   reload)
@@ -70,27 +76,45 @@ case "$cmd" in
 
   # ---------- raccourcis spécifiques au projet ----------
   untheme)
-    # Désinstalle tous les thèmes de démo (sauf le nôtre)
-    themes=$(docker compose exec -T db psql -U odoo -d "$DB" -tA -c \
-      "SELECT name FROM ir_module_module WHERE state='installed' AND name LIKE 'theme_%';")
-    if [ -z "$themes" ]; then
-      echo "Aucun thème de démo installé."
-      exit 0
-    fi
-    for t in $themes; do
-      echo "→ Désinstallation de $t"
-      docker compose exec -T odoo odoo --no-http --stop-after-init \
-        -d "$DB" --uninstall "$t"
-    done
+    # Désinstalle tous les thèmes de démo (modules theme_*)
+    # et nettoie les ir_asset orphelins qui pointent encore vers eux
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<'PYEOF'
+themes = env['ir.module.module'].search([
+    ('name', 'like', 'theme_'),
+    ('state', '=', 'installed'),
+])
+if themes:
+    for t in themes:
+        print(f"→ Désinstallation de {t.name}")
+    themes.button_immediate_uninstall()
+    env.cr.commit()
+else:
+    print("→ Aucun thème de démo installé.")
+
+# Nettoie les ir_asset orphelins (références SCSS/JS vers les thèmes désinstallés)
+env.cr.execute("""
+    DELETE FROM ir_asset
+    WHERE path ~ '(^|/)theme_[a-z_]+/'
+""")
+deleted = env.cr.rowcount
+env.cr.commit()
+if deleted:
+    print(f"→ {deleted} asset(s) orphelin(s) supprimé(s).")
+PYEOF
     docker compose restart odoo
-    echo "→ Thèmes de démo supprimés."
     ;;
 
   reset-home)
-    # Vide la page d'accueil (garde le menu/header/footer du site)
-    docker compose exec -T db psql -U odoo -d "$DB" -c \
-      "UPDATE website_page SET arch_db = '<t name=\"Accueil\" t-name=\"website.homepage\"><t t-call=\"website.layout\"><div id=\"wrap\" class=\"oe_structure oe_empty\"/></t></t>' WHERE url='/';"
-    echo "→ Page d'accueil vidée. Rafraîchis le navigateur."
+    # Vide la page d'accueil (garde le header/footer du site)
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<'PYEOF'
+page = env['website.page'].search([('url', '=', '/')], limit=1)
+if not page:
+    print("→ Aucune page '/' trouvée.")
+else:
+    page.view_id.arch_db = '''<t name="Accueil" t-name="website.homepage"><t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t></t>'''
+    env.cr.commit()
+    print("→ Page d'accueil vidée. Rafraîchis le navigateur.")
+PYEOF
     ;;
 
   shell)

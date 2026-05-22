@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Composition complète de la page d'accueil.
+        On surcharge la vue website.homepage en remplaçant son contenu
+        par notre assemblage de snippets, le tout dans un oe_structure
+        pour rester éditable depuis l'UI Odoo.
+    -->
+    <template id="homepage" inherit_id="website.homepage" name="Accueil Chèvrerie">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="oe_structure oe_empty">
+
+                <t t-call="chevrerie_website.s_hero_editorial"/>
+                <t t-call="chevrerie_website.s_intro_story"/>
+                <t t-call="chevrerie_website.s_wool_grid"/>
+                <t t-call="chevrerie_website.s_savoirfaire"/>
+                <t t-call="chevrerie_website.s_markets"/>
+                <t t-call="chevrerie_website.s_visit"/>
+
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

@@ -10,4 +10,7 @@ __pycache__/
 
 # macOS / misc
 .DS_Store
-*.png
+
+# Screenshots à la racine, mais on garde les assets du module
+/*.png
+!addons/**/*.png

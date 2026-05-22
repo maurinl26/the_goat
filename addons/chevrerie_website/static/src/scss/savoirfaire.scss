@@ -1,0 +1,86 @@
+// Snippet "Savoir-faire" — 3 étapes numérotées, typographie éditoriale
+
+.s_savoirfaire {
+    background-color: var(--chev-bg);
+    padding: 6rem 0;
+    position: relative;
+
+    // Liseré or central très discret
+    &::before {
+        content: "";
+        position: absolute;
+        top: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 1px;
+        background: var(--chev-or);
+        opacity: 0.6;
+    }
+
+    .s_savoirfaire_intro {
+        text-align: center;
+        margin-bottom: 4rem;
+
+        .s_savoirfaire_eyebrow {
+            font-family: var(--chev-font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--chev-terre);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h2 {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+    }
+
+    .s_savoirfaire_step {
+        position: relative;
+        padding: 2rem 1.5rem 2rem 0;
+        height: 100%;
+
+        // Filet vertical or à gauche
+        border-left: 1px solid var(--chev-line);
+        padding-left: 2rem;
+
+        .s_savoirfaire_num {
+            font-family: var(--chev-font-serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2.25rem;
+            color: var(--chev-or);
+            display: block;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-family: var(--chev-font-serif);
+            font-size: 1.5rem;
+            color: var(--chev-forest);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--chev-text);
+            font-size: 1rem;
+            line-height: 1.65;
+            max-width: 360px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 4rem 0;
+
+        .s_savoirfaire_step {
+            border-left: none;
+            border-top: 1px solid var(--chev-line);
+            padding: 1.5rem 0 0;
+        }
+    }
+}

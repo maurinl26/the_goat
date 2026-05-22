@@ -1,0 +1,122 @@
+// Snippet "Grille produits laine" — 3 cartes éditoriales
+
+.s_wool_grid {
+    background-color: var(--chev-bg-soft);
+    padding: 6rem 0;
+
+    .s_wool_grid_intro {
+        max-width: 640px;
+        margin: 0 auto 3.5rem;
+        text-align: center;
+
+        .s_wool_grid_eyebrow {
+            font-family: var(--chev-font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--chev-terre);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--chev-muted);
+            font-size: 1.1rem;
+        }
+    }
+
+    .s_wool_card {
+        background: var(--chev-bg);
+        border-radius: var(--chev-radius-lg);
+        overflow: hidden;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 20px -10px rgba(36, 58, 44, 0.15);
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px -20px rgba(36, 58, 44, 0.35);
+
+            .s_wool_card_media { transform: scale(1.04); }
+            .s_wool_card_cta   { color: var(--chev-forest-d); gap: 0.8rem; }
+        }
+    }
+
+    .s_wool_card_link {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        color: inherit;
+        text-decoration: none;
+
+        &:hover { text-decoration: none; }
+    }
+
+    .s_wool_card_media {
+        aspect-ratio: 4 / 5;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: transform 0.6s ease;
+    }
+
+    .s_wool_card_body {
+        padding: 1.75rem 1.75rem 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .s_wool_card_kicker {
+            font-family: var(--chev-font-sans);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--chev-or);
+            margin-bottom: 0.85rem;
+        }
+
+        h3 {
+            font-family: var(--chev-font-serif);
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--chev-text);
+        }
+
+        p {
+            color: var(--chev-muted);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .s_wool_card_cta {
+            font-family: var(--chev-font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--chev-forest);
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    }
+
+    .s_wool_grid_footer {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+        padding: 4rem 0;
+
+        .s_wool_card_media { aspect-ratio: 16 / 10; }
+    }
+}

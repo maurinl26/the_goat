@@ -1,0 +1,105 @@
+// Snippet "Notre histoire" — bloc 2 colonnes texte + photo encadrée
+
+.s_intro_story {
+    background-color: var(--chev-bg);
+    padding: 6rem 0;
+
+    .s_intro_story_eyebrow {
+        font-family: var(--chev-font-sans);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--chev-terre);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin-bottom: 1.5rem;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 36px;
+            height: 1px;
+            background: var(--chev-terre);
+        }
+    }
+
+    .s_intro_story_text {
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.875rem, 3vw, 2.5rem);
+
+            em {
+                font-style: italic;
+                color: var(--chev-forest);
+                display: block;
+            }
+        }
+
+        p {
+            color: var(--chev-text);
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+            max-width: 520px;
+        }
+
+        .btn-secondary {
+            margin-top: 1rem;
+        }
+    }
+
+    .s_intro_story_media {
+        position: relative;
+
+        img {
+            border-radius: var(--chev-radius-lg);
+            box-shadow: 0 20px 60px -25px rgba(36, 58, 44, 0.4);
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 4 / 5;
+        }
+
+        .s_intro_story_caption {
+            position: absolute;
+            bottom: -1.25rem;
+            left: 1.5rem;
+            background: var(--chev-bg);
+            padding: 0.6rem 1.1rem;
+            border-radius: var(--chev-radius);
+            box-shadow: var(--chev-shadow);
+
+            span {
+                font-family: var(--chev-font-serif);
+                font-style: italic;
+                font-size: 0.9rem;
+                color: var(--chev-muted);
+            }
+        }
+
+        // Liseré or discret en haut à gauche de la photo
+        &::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 80px;
+            height: 80px;
+            border-top: 2px solid var(--chev-or);
+            border-left: 2px solid var(--chev-or);
+            opacity: 0.7;
+            z-index: 1;
+            border-top-left-radius: var(--chev-radius-lg);
+        }
+    }
+
+    @media (max-width: 992px) {
+        padding: 4rem 0;
+
+        .s_intro_story_media {
+            margin-top: 2rem;
+
+            img { aspect-ratio: 4 / 3; }
+        }
+    }
+}

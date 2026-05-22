@@ -15,19 +15,19 @@
                     <div class="s_hero_editorial_card">
                         <span class="s_hero_editorial_eyebrow">Couserans · Ariège</span>
                         <h1 class="s_hero_editorial_title">
-                            La Chèvrerie
-                            <em>du Rocher</em>
+                            Mohair
+                            <em>des Pyrénées</em>
                         </h1>
                         <p class="s_hero_editorial_lead">
-                            Fromages fermiers d'estive au cœur des Pyrénées,
-                            façonnés au rythme de la montagne.
+                            Laine soyeuse de nos chèvres angora,
+                            élevées en plein air au cœur des montagnes.
                         </p>
                         <div class="s_hero_editorial_actions">
-                            <a href="/shop" class="btn btn-primary">Découvrir nos fromages</a>
+                            <a href="/shop" class="btn btn-primary">Découvrir la boutique</a>
                             <a href="#notre-histoire" class="btn btn-secondary">Notre histoire</a>
                         </div>
                         <p class="s_hero_editorial_signature">
-                            Marie &amp; Véronique, éleveuses
+                            {{Prénom à compléter}}, éleveuse
                         </p>
                     </div>
                 </div>
@@ -36,9 +36,163 @@
     </template>
 
     <!--
+        Snippet "Intro / Notre histoire" — 2 colonnes (texte + photo).
+        Cadre éditorial sobre, sert d'introduction à l'identité de l'atelier.
+    -->
+    <template id="s_intro_story" name="Notre histoire">
+        <section id="notre-histoire" class="s_intro_story">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 s_intro_story_text">
+                        <span class="s_intro_story_eyebrow">Notre histoire</span>
+                        <h2>Du troupeau à la maille,
+                            <em>en toute transparence</em>
+                        </h2>
+                        <p>
+                            Au pied du Mont Valier, un petit troupeau de chèvres angora
+                            vit au rythme des saisons. Chaque tonte donne une fibre rare,
+                            d'une douceur incomparable&#8239;: le mohair.
+                        </p>
+                        <p>
+                            Travaillée en circuit court avec la coopérative
+                            <strong>SICA Mohair</strong>, notre laine est filée, teinte
+                            et tricotée en France. Pelotes, écharpes, gilets&#8239;: chaque
+                            pièce porte l'histoire d'un animal et d'un savoir-faire.
+                        </p>
+                        <a href="/savoir-faire" class="btn btn-secondary">En savoir plus</a>
+                    </div>
+                    <div class="col-lg-6 s_intro_story_media">
+                        <img src="/web/image/website.library_image_13"
+                             class="img-fluid"
+                             alt="Chèvres angora dans les Pyrénées"/>
+                        <div class="s_intro_story_caption">
+                            <span>Estives du Couserans</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!--
+        Snippet "Grille produits laine" — 3 cartes éditoriales pour mettre
+        en avant pelotes / écharpes / tricots phares de la maison.
+    -->
+    <template id="s_wool_grid" name="Nos pièces phares">
+        <section class="s_wool_grid">
+            <div class="container">
+                <div class="s_wool_grid_intro">
+                    <span class="s_wool_grid_eyebrow">Boutique</span>
+                    <h2>Trois pièces de la maison</h2>
+                    <p>
+                        Une sélection éditoriale&#8239;: la matière brute, la pièce
+                        d'usage, la pièce d'exception.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <article class="s_wool_card">
+                            <a href="/shop" class="s_wool_card_link">
+                                <div class="s_wool_card_media"
+                                     style="background-image: url('/web/image/website.library_image_03');"/>
+                                <div class="s_wool_card_body">
+                                    <span class="s_wool_card_kicker">Matière</span>
+                                    <h3>Pelote de mohair</h3>
+                                    <p>Filée à Castres, écheveau de 50&#8239;g, plusieurs coloris naturels.</p>
+                                    <span class="s_wool_card_cta">Voir la pelote →</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="s_wool_card">
+                            <a href="/shop" class="s_wool_card_link">
+                                <div class="s_wool_card_media"
+                                     style="background-image: url('/web/image/website.library_image_05');"/>
+                                <div class="s_wool_card_body">
+                                    <span class="s_wool_card_kicker">À porter</span>
+                                    <h3>Écharpe d'hiver</h3>
+                                    <p>Tricotée main, mohair &amp; soie, finition franges roulées.</p>
+                                    <span class="s_wool_card_cta">Voir l'écharpe →</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="s_wool_card">
+                            <a href="/shop" class="s_wool_card_link">
+                                <div class="s_wool_card_media"
+                                     style="background-image: url('/web/image/website.library_image_10');"/>
+                                <div class="s_wool_card_body">
+                                    <span class="s_wool_card_kicker">Pièce d'exception</span>
+                                    <h3>Gilet long</h3>
+                                    <p>Édition limitée, modèle &amp; tricotage maison, mohair pur.</p>
+                                    <span class="s_wool_card_cta">Voir le gilet →</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="s_wool_grid_footer">
+                    <a href="/shop" class="btn btn-primary">Toute la boutique</a>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!--
+        Snippet "Savoir-faire" — 3 étapes (tonte → filature → confection),
+        carte verticale numérotée, illustration en haut.
+    -->
+    <template id="s_savoirfaire" name="Savoir-faire">
+        <section class="s_savoirfaire">
+            <div class="container">
+                <div class="s_savoirfaire_intro">
+                    <span class="s_savoirfaire_eyebrow">Du pré à la maille</span>
+                    <h2>Trois temps, un savoir-faire</h2>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="s_savoirfaire_step">
+                            <span class="s_savoirfaire_num">01</span>
+                            <h3>La tonte</h3>
+                            <p>
+                                Deux fois par an, au printemps et à l'automne, les chèvres
+                                sont tondues à la main. La fibre est triée mèche par mèche.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="s_savoirfaire_step">
+                            <span class="s_savoirfaire_num">02</span>
+                            <h3>La filature</h3>
+                            <p>
+                                La toison part chez nos partenaires de la coopérative
+                                SICA Mohair, lavée et filée dans le Tarn, en circuit court.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="s_savoirfaire_step">
+                            <span class="s_savoirfaire_num">03</span>
+                            <h3>La confection</h3>
+                            <p>
+                                De retour à l'atelier, les pelotes deviennent écharpes,
+                                pulls et gilets, tricotés à la main ou sur métier.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!--
         Snippet "Marchés" — bloc réutilisable affichant les marchés
-        où l'on peut retrouver la Chèvrerie du Rocher.
-        Glissable depuis l'éditeur du site (catégorie "Content").
+        où l'on peut retrouver l'éleveuse en direct.
     -->
     <template id="s_markets" name="Marchés">
         <section class="s_markets">
@@ -47,8 +201,8 @@
                     <span class="s_markets_eyebrow">Au plus près de vous</span>
                     <h2>Retrouvez-nous sur les marchés</h2>
                     <p>
-                        Chaque semaine, nous descendons de la montagne pour vous proposer
-                        nos fromages fermiers et nos produits laitiers en direct.
+                        Chaque semaine, nous descendons de la montagne pour vous
+                        proposer nos pelotes, écharpes et tricots en direct.
                     </p>
                 </div>
 
@@ -63,7 +217,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="s_markets_card">
-                            <h4>À compléter</h4>
+                            <h4>{{Marché à compléter}}</h4>
                             <p class="s_markets_when">Jour</p>
                             <p class="s_markets_hours">Horaires</p>
                             <p class="s_markets_address">Adresse</p>
@@ -75,16 +229,43 @@
     </template>
 
     <!--
+        Snippet "Visite / contact" — bandeau final, CTA visite atelier.
+    -->
+    <template id="s_visit" name="Visite atelier">
+        <section class="s_visit">
+            <div class="container">
+                <div class="s_visit_inner">
+                    <span class="s_visit_eyebrow">Venir nous voir</span>
+                    <h2>Visiter l'atelier</h2>
+                    <p>
+                        L'atelier ouvre ses portes sur rendez-vous. Découvrez les chèvres,
+                        la fibre brute et les pièces en cours de tricotage.
+                    </p>
+                    <a href="/contactus" class="btn btn-primary">Prendre rendez-vous</a>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!--
         Enregistrement des snippets dans le panneau de l'éditeur.
-        Hero éditorial → catégorie "Structure"
-        Marchés        → catégorie "Content"
+        Structure  → Hero éditorial, Notre histoire, Savoir-faire, Visite
+        Content    → Grille laine, Marchés
     -->
     <template id="s_chevrerie_snippets" inherit_id="website.snippets" name="Chèvrerie Snippets">
         <xpath expr="//div[@id='snippet_structure']" position="inside">
             <t t-snippet="chevrerie_website.s_hero_editorial"
                t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.svg"/>
+            <t t-snippet="chevrerie_website.s_intro_story"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_text_image.svg"/>
+            <t t-snippet="chevrerie_website.s_savoirfaire"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_features.svg"/>
+            <t t-snippet="chevrerie_website.s_visit"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_banner.svg"/>
         </xpath>
         <xpath expr="//div[@id='snippet_content']" position="inside">
+            <t t-snippet="chevrerie_website.s_wool_grid"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_three_columns.svg"/>
             <t t-snippet="chevrerie_website.s_markets"
                t-thumbnail="/website/static/src/img/snippets_thumbs/s_text_block.svg"/>
         </xpath>
