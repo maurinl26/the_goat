@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Surcharge du footer Odoo (template_footer_centered).
+        Remplace l'intégralité du #footer pour :
+        - n'afficher que le lien Instagram (et plus Facebook/Twitter/LinkedIn)
+        - poser l'adresse réelle (Irazein, 09800 Bonac-Irazein)
+        - utiliser des placeholders explicites pour téléphone et email
+        - afficher notre logo SVG centré
+    -->
+    <template id="footer_chevrerie"
+              inherit_id="website.template_footer_centered"
+              name="Footer Chèvrerie">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="s_text_block pt32" data-snippet="s_text_block" data-name="Text">
+                    <div class="container s_allow_columns">
+
+                        <!-- Réseau social unique : Instagram -->
+                        <div class="s_social_media text-center mb-4 o_not_editable"
+                             data-snippet="s_social_media"
+                             data-name="Social Media"
+                             contenteditable="false">
+                            <h5 class="s_social_media_title d-none" contenteditable="true">Suivez-nous</h5>
+                            <a href="https://www.instagram.com/chevrerie_du_rocher"
+                               class="s_social_media_instagram"
+                               target="_blank"
+                               rel="noopener"
+                               aria-label="Instagram">
+                                <i class="fa fa-instagram rounded-circle rounded shadow-sm o_editable_media"/>
+                            </a>
+                        </div>
+
+                        <!-- Adresse réelle -->
+                        <p class="text-center mb-1">
+                            Irazein · 09800 Bonac-Irazein · Ariège
+                        </p>
+
+                        <!-- Téléphone &amp; email — placeholders à remplacer -->
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item mx-3">
+                                <i class="fa fa-1x fa-fw fa-phone me-2"/>
+                                <span>00 00 00 00 00</span>
+                            </li>
+                            <li class="list-inline-item mx-3">
+                                <i class="fa fa-1x fa-fw fa-envelope me-2"/>
+                                <span>
+                                    <a href="mailto:contact@chevreriedurocher.fr">contact@chevreriedurocher.fr</a>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Logo centré (notre SVG, pas celui d'Odoo) -->
+                <section class="s_text_block pt16 pb16" data-snippet="s_text_block" data-name="Logo">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2 offset-lg-5">
+                                <a href="/" class="o_footer_logo logo">
+                                    <img src="/chevrerie_website/static/src/img/logo/logo_chevrerie_rocher.svg"
+                                         class="img-fluid mx-auto"
+                                         aria-label="Logo de la Chèvrerie du Rocher"
+                                         title="Chèvrerie du Rocher"
+                                         role="img"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Copyright en bas de page : "Chèvrerie du Rocher" -->
+    <template id="footer_copyright_chevrerie" inherit_id="website.layout" name="Footer Copyright Chèvrerie">
+        <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
+            <span class="o_footer_copyright_name me-2">Copyright &amp;copy; Chèvrerie du Rocher</span>
+        </xpath>
+    </template>
+
+</odoo>

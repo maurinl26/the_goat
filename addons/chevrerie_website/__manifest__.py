@@ -10,6 +10,7 @@
         "views/layout.xml",
         "views/snippets.xml",
         "views/home.xml",
+        "views/footer.xml",
     ],
     "assets": {
         "web.assets_frontend": [
