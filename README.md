@@ -172,6 +172,7 @@ Stratégie : **scripter au maximum** pour éviter les allers-retours dans l'UI O
 
 # Raccourcis projet
 ./dev.sh untheme                  # Désinstalle tous les thèmes de démo Odoo
+./dev.sh set-logo <path>          # Injecte un logo (res.company + website)
 ./dev.sh reset-home               # Vide la page d'accueil (repart d'une page propre)
 ./dev.sh shell                    # Shell Python avec env Odoo (REPL)
 ./dev.sh psql                     # Console PostgreSQL

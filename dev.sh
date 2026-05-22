@@ -104,6 +104,39 @@ PYEOF
     docker compose restart odoo
     ;;
 
+  set-logo)
+    # Injecte un logo dans res.company (encodé base64) + le pousse sur
+    # website.logo si la table existe. Usage : ./dev.sh set-logo <path>
+    path="${1:?usage: ./dev.sh set-logo <chemin_vers_logo>}"
+    if [ ! -f "$path" ]; then
+      echo "✗ Fichier introuvable : $path" >&2
+      exit 1
+    fi
+    # On copie le fichier dans le conteneur Odoo pour qu'il puisse le lire
+    fname=$(basename "$path")
+    docker compose cp "$path" "odoo:/tmp/${fname}"
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<PYEOF
+import base64
+with open('/tmp/${fname}', 'rb') as f:
+    data = base64.b64encode(f.read())
+
+# Logo de la société (utilisé partout par défaut)
+company = env['res.company'].search([], limit=1)
+company.logo = data
+print(f"→ Logo société '{company.name}' mis à jour.")
+
+# Logo du site web (override possible)
+website = env['website'].search([], limit=1)
+if website and 'logo' in website._fields:
+    website.logo = data
+    print(f"→ Logo du site '{website.name}' mis à jour.")
+
+env.cr.commit()
+PYEOF
+    docker compose exec -T odoo rm -f "/tmp/${fname}"
+    echo "→ Vider le cache navigateur (Cmd+Shift+R) pour voir le nouveau logo."
+    ;;
+
   reset-home)
     # Vide la page d'accueil (garde le header/footer du site)
     docker compose exec -T odoo odoo shell --no-http -d "$DB" <<'PYEOF'
@@ -144,6 +177,7 @@ Usage : ./dev.sh <commande> [args]
 
   Projet
     untheme                  Désinstalle tous les thèmes de démo
+    set-logo <path>          Injecte un logo (res.company + website)
     reset-home               Vide la page d'accueil
     shell                    Shell Python Odoo
     psql                     Console PostgreSQL
