@@ -104,6 +104,63 @@ PYEOF
     docker compose restart odoo
     ;;
 
+  setup-company)
+    # Configure les infos société + réseaux affichés dans le footer.
+    # Idempotent : peut être relancé à tout moment.
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<'PYEOF'
+company = env['res.company'].search([], limit=1)
+company.write({
+    'name':   "Chèvrerie du Rocher",
+    'street': "Irazein",
+    'zip':    "09800",
+    'city':   "Bonac-Irazein",
+    'phone':  "À compléter",
+    'email':  "contact@chevreriedurocher.fr",
+})
+print(f"→ Société mise à jour : {company.name}")
+print(f"   {company.street}, {company.zip} {company.city}")
+
+# Site web : un seul réseau (Instagram), on vide les autres
+website = env['website'].search([], limit=1)
+website.write({
+    'name':             "Chèvrerie du Rocher",
+    'social_instagram': "https://www.instagram.com/chevrerie_du_rocher",
+    'social_facebook':  False,
+    'social_twitter':   False,
+    'social_github':    False,
+    'social_linkedin':  False,
+    'social_youtube':   False,
+    'social_tiktok':    False,
+})
+print(f"→ Site web : Instagram seulement ({website.social_instagram})")
+
+env.cr.commit()
+PYEOF
+    ;;
+
+  set-favicon)
+    # Injecte un favicon dans le site (website.favicon)
+    # Usage : ./dev.sh set-favicon <path>
+    path="${1:?usage: ./dev.sh set-favicon <chemin_vers_favicon>}"
+    if [ ! -f "$path" ]; then
+      echo "✗ Fichier introuvable : $path" >&2
+      exit 1
+    fi
+    fname=$(basename "$path")
+    docker compose cp "$path" "odoo:/tmp/${fname}"
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<PYEOF
+import base64
+with open('/tmp/${fname}', 'rb') as f:
+    data = base64.b64encode(f.read())
+website = env['website'].search([], limit=1)
+website.favicon = data
+print(f"→ Favicon du site '{website.name}' mis à jour.")
+env.cr.commit()
+PYEOF
+    docker compose exec -T --user root odoo rm -f "/tmp/${fname}" 2>/dev/null || true
+    echo "→ Vider le cache navigateur (Cmd+Shift+R) pour voir le nouveau favicon."
+    ;;
+
   set-logo)
     # Injecte un logo dans res.company (encodé base64) + le pousse sur
     # website.logo si la table existe. Usage : ./dev.sh set-logo <path>
@@ -133,7 +190,7 @@ if website and 'logo' in website._fields:
 
 env.cr.commit()
 PYEOF
-    docker compose exec -T odoo rm -f "/tmp/${fname}"
+    docker compose exec -T --user root odoo rm -f "/tmp/${fname}" 2>/dev/null || true
     echo "→ Vider le cache navigateur (Cmd+Shift+R) pour voir le nouveau logo."
     ;;
 
@@ -177,7 +234,9 @@ Usage : ./dev.sh <commande> [args]
 
   Projet
     untheme                  Désinstalle tous les thèmes de démo
+    setup-company            Société + adresse + Instagram (footer)
     set-logo <path>          Injecte un logo (res.company + website)
+    set-favicon <path>       Injecte un favicon (website.favicon)
     reset-home               Vide la page d'accueil
     shell                    Shell Python Odoo
     psql                     Console PostgreSQL
