@@ -22,6 +22,15 @@ Couvre la gestion de stock, le point de vente et la vente en ligne.
 | **Boutique en ligne** | Backend → Website |
 | **Gestion base de données** | [thegoat.karpos.pro/web/database/manager](https://thegoat.karpos.pro/web/database/manager) |
 
+### 📖 Guides utilisateur
+
+Fiches pratiques pour l'usage quotidien (Marie & Véronique) — voir [`docs/`](docs/README.md) :
+
+- [Modifier le site (textes / photos)](docs/site-modifier.md)
+- [Tenir une session de marché](docs/point-de-vente-marche.md)
+- [Ajouter un article à l'inventaire](docs/inventaire-articles.md)
+- [Gérer les clients du point de vente](docs/clients.md)
+
 ---
 
 ## 🐐 Fonctionnalités
