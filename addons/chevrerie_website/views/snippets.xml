@@ -7,7 +7,7 @@
         Glissable depuis l'éditeur (catégorie "Structure").
     -->
     <template id="s_hero_editorial" name="Hero éditorial">
-        <section class="s_hero_editorial">
+        <section class="s_hero_editorial" data-snippet="s_hero_editorial" data-name="Hero éditorial">
             <div class="s_hero_editorial_media"
                  style="background-image: url('/chevrerie_website/static/src/img/hero/couserans.jpg');"/>
             <div class="s_hero_editorial_inner">
@@ -40,7 +40,7 @@
         Cadre éditorial sobre, sert d'introduction à l'identité de l'atelier.
     -->
     <template id="s_intro_story" name="Notre histoire">
-        <section id="notre-histoire" class="s_intro_story">
+        <section id="notre-histoire" class="s_intro_story" data-snippet="s_intro_story" data-name="Notre histoire">
             <div class="container">
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6 s_intro_story_text">
@@ -79,7 +79,7 @@
         en avant pelotes / écharpes / tricots phares de la maison.
     -->
     <template id="s_wool_grid" name="Nos pièces phares">
-        <section class="s_wool_grid">
+        <section class="s_wool_grid" data-snippet="s_wool_grid" data-name="Nos pièces phares">
             <div class="container">
                 <div class="s_wool_grid_intro">
                     <span class="s_wool_grid_eyebrow">Boutique</span>
@@ -147,7 +147,7 @@
         carte verticale numérotée, illustration en haut.
     -->
     <template id="s_savoirfaire" name="Savoir-faire">
-        <section class="s_savoirfaire">
+        <section class="s_savoirfaire" data-snippet="s_savoirfaire" data-name="Savoir-faire">
             <div class="container">
                 <div class="s_savoirfaire_intro">
                     <span class="s_savoirfaire_eyebrow">Du pré à la maille</span>
@@ -195,7 +195,7 @@
         où l'on peut retrouver l'éleveuse en direct.
     -->
     <template id="s_markets" name="Marchés">
-        <section class="s_markets">
+        <section class="s_markets" data-snippet="s_markets" data-name="Marchés">
             <div class="container">
                 <div class="s_markets_intro">
                     <span class="s_markets_eyebrow">Au plus près de vous</span>
@@ -232,7 +232,7 @@
         Snippet "Visite / contact" — bandeau final, CTA visite atelier.
     -->
     <template id="s_visit" name="Visite atelier">
-        <section class="s_visit">
+        <section class="s_visit" data-snippet="s_visit" data-name="Visite atelier">
             <div class="container">
                 <div class="s_visit_inner">
                     <span class="s_visit_eyebrow">Venir nous voir</span>

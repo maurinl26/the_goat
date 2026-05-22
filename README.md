@@ -172,11 +172,26 @@ Stratégie : **scripter au maximum** pour éviter les allers-retours dans l'UI O
 
 # Raccourcis projet
 ./dev.sh untheme                  # Désinstalle tous les thèmes de démo Odoo
+./dev.sh setup-company            # Société + adresse + Instagram (footer)
 ./dev.sh set-logo <path>          # Injecte un logo (res.company + website)
-./dev.sh reset-home               # Vide la page d'accueil (repart d'une page propre)
+./dev.sh set-favicon <path>       # Injecte un favicon (website.favicon)
+./dev.sh reset-home               # Vide la page d'accueil
+./dev.sh init-home                # Pose la composition Chèvrerie sur la home
+./dev.sh dump-home [path]         # Exporte le contenu actuel de la home en XML
 ./dev.sh shell                    # Shell Python avec env Odoo (REPL)
 ./dev.sh psql                     # Console PostgreSQL
 ```
+
+### Édition de la home : code vs UI
+
+La home fonctionne désormais en **deux temps** :
+
+1. **Init (côté code)** : la composition est définie dans `./dev.sh init-home` (liste de snippets en haut du `case`). Une fois exécutée, les snippets sont rendus et inlinés dans `website_page.arch_db`. Le module ne touche plus à la home après cette étape.
+2. **Édition (côté UI)** : Marie/Véronique cliquent sur une image dans l'éditeur Odoo (Modifier → clic sur l'image → **Remplacer**), changent un texte, déplacent un bloc. Ces modifs persistent en base et **ne sont pas écrasées** par `./dev.sh reload`.
+
+Pour repartir de zéro côté composition : `./dev.sh reset-home && ./dev.sh init-home`.
+
+Pour versionner un état UI dans le repo : `./dev.sh dump-home addons/chevrerie_website/views/home_snapshot.xml`.
 
 La base cible est `db` par défaut. Pour une autre :
 

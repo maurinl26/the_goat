@@ -207,6 +207,67 @@ else:
 PYEOF
     ;;
 
+  init-home)
+    # Pose la composition Chèvrerie sur la page d'accueil.
+    # Les snippets sont rendus et inlinés dans website_page.arch_db,
+    # ce qui les rend éditables via l'UI Odoo (Modifier → clic image →
+    # Remplacer). Après init, ce script ne touche plus à la home.
+    # Pour reset : ./dev.sh reset-home && ./dev.sh init-home
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<'PYEOF'
+SNIPPETS = [
+    'chevrerie_website.s_hero_editorial',
+    'chevrerie_website.s_intro_story',
+    'chevrerie_website.s_wool_grid',
+    'chevrerie_website.s_savoirfaire',
+    'chevrerie_website.s_markets',
+    'chevrerie_website.s_visit',
+]
+
+# Rendu HTML de chaque snippet via ir.qweb
+parts = []
+for xmlid in SNIPPETS:
+    try:
+        html = env['ir.qweb']._render(xmlid)
+        parts.append(str(html))
+        print(f"→ Snippet rendu : {xmlid}")
+    except Exception as e:
+        print(f"✗ Échec rendu {xmlid} : {e}")
+
+wrap = (
+    '<t name="Accueil" t-name="website.homepage">'
+    '<t t-call="website.layout">'
+    '<div id="wrap" class="oe_structure">'
+    + '\n'.join(parts) +
+    '</div>'
+    '</t>'
+    '</t>'
+)
+
+page = env['website.page'].search([('url', '=', '/')], limit=1)
+if not page:
+    print("✗ Aucune page '/' trouvée. Installe le module website d'abord.")
+else:
+    page.view_id.arch_db = wrap
+    env.cr.commit()
+    print(f"→ Page d'accueil initialisée ({len(parts)} snippets, "
+          f"{len(wrap)} caractères).")
+PYEOF
+    ;;
+
+  dump-home)
+    # Exporte le contenu actuel de la home (DB) dans un fichier XML
+    # local, pour versioning ou backup. Le fichier généré n'est PAS
+    # chargé par le module — c'est juste une photo de l'état.
+    out="${1:-addons/chevrerie_website/views/home_dump_$(date +%Y%m%d-%H%M%S).xml}"
+    docker compose exec -T odoo odoo shell --no-http -d "$DB" <<PYEOF > "$out"
+page = env['website.page'].search([('url', '=', '/')], limit=1)
+if page:
+    print(page.view_id.arch_db)
+PYEOF
+    echo "→ Home exportée vers : $out"
+    echo "   (penser à inspecter / nettoyer le fichier avant commit)"
+    ;;
+
   shell)
     # Ouvre un shell Odoo (REPL Python avec env Odoo)
     docker compose exec odoo odoo shell -d "$DB" --no-http
@@ -238,6 +299,8 @@ Usage : ./dev.sh <commande> [args]
     set-logo <path>          Injecte un logo (res.company + website)
     set-favicon <path>       Injecte un favicon (website.favicon)
     reset-home               Vide la page d'accueil
+    init-home                Pose la composition Chèvrerie (snippets inlinés)
+    dump-home [path]         Exporte le contenu actuel de la home en XML
     shell                    Shell Python Odoo
     psql                     Console PostgreSQL
 

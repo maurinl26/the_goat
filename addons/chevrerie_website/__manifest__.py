@@ -9,7 +9,8 @@
     "data": [
         "views/layout.xml",
         "views/snippets.xml",
-        "views/home.xml",
+        # views/home.xml retiré : la home est désormais initialisée
+        # une seule fois via `./dev.sh init-home` puis éditable via l'UI Odoo
         "views/footer.xml",
     ],
     "assets": {
